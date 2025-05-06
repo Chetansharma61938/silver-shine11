@@ -33,7 +33,7 @@ Or you can use these curl commands to set your password:
 curl -X GET {reset_url}
 
 2. Set password:
-curl -X POST {reset_url} -H "Content-Type: application/json" -d '{{"password": "your_password", "password2": "your_password"}}'
+curl -X POST {reset_url} -H "Content-Type: application/json" -d '{{"password": "your_password", "confirm_password": "your_password"}}'
 
 Note: The link will expire in 1 hour.''',
             settings.EMAIL_HOST_USER,
@@ -142,7 +142,7 @@ Or you can use these curl commands to reset your password:
 curl -X GET {reset_url}
 
 2. Set new password:
-curl -X POST {reset_url} -H "Content-Type: application/json" -d '{{"password": "your_password", "password2": "your_password"}}'
+curl -X POST {reset_url} -H "Content-Type: application/json" -d '{{"password": "your_password", "confirm_password": "your_password"}}'
 
 Note: The link will expire in 1 hour.''',
                 settings.EMAIL_HOST_USER,

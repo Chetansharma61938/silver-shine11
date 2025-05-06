@@ -13,8 +13,9 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name')}),
         ('Permissions', {'fields': ('role', 'is_active', 'has_set_password')}),
-        ('Important dates', {'fields': ('date_joined',)}),
     )
+    
+    readonly_fields = ('date_joined',)
     
     add_fieldsets = (
         (None, {

@@ -30,7 +30,7 @@ SECRET_KEY = "django-insecure-u($v=slxq@=k@o0&f%^-)pi7l5am6w)g#vo)8@iy1mswza+qg%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['d7bf-49-249-18-30.ngrok-free.app', '127.0.0.1', 'localhost', 'thinking-chemical-ev-tabs.trycloudflare.com']
+ALLOWED_HOSTS = ['d7bf-49-249-18-30.ngrok-free.app', '127.0.0.1', 'localhost', 'thinking-chemical-ev-tabs.trycloudflare.com', 'employed-centres-random-love.trycloudflare.com']
 
 
 # Application definition
@@ -157,6 +157,15 @@ SIMPLE_JWT = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOWED_ORIGINS = [
+    "https://employed-centres-random-love.trycloudflare.com",
+    "https://thinking-chemical-ev-tabs.trycloudflare.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
 CORS_ALLOW_METHODS = [
     'DELETE',
     'GET',
@@ -191,9 +200,17 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 PASSWORD_RESET_TIMEOUT = int(os.getenv('PASSWORD_RESET_TIMEOUT', 3600))  # 1 hour in seconds
 
 # Frontend URLs
-FRONTEND_URL = os.getenv('FRONTEND_URL', 'https://thinking-chemical-ev-tabs.trycloudflare.com')
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'https://employed-centres-random-love.trycloudflare.com')
+
+# Security Settings
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
 
 # Force HTTPS
-SECURE_PROXY_SSL_HEADER = tuple(os.getenv('SECURE_PROXY_SSL_HEADER', 'HTTP_X_FORWARDED_PROTO,https').split(','))
-USE_X_FORWARDED_HOST = os.getenv('USE_X_FORWARDED_HOST', 'True').lower() == 'true'
-USE_X_FORWARDED_PORT = os.getenv('USE_X_FORWARDED_PORT', 'True').lower() == 'true'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True

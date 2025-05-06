@@ -31,7 +31,7 @@ schema_view = get_schema_view(
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
-    url='https://thinking-chemical-ev-tabs.trycloudflare.com',
+    url='https://employed-centres-random-love.trycloudflare.com',
 )
 
 urlpatterns = [
