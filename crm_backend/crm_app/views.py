@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta
-from .serializers import UserSerializer, LoginSerializer, SetPasswordSerializer
+from .serializers import UserSerializer, LoginSerializer, SetPasswordSerializer, ForgotPasswordSerializer
 from .models import User, PasswordResetToken
 
 class UserRegisterAPIView(generics.CreateAPIView):
@@ -117,9 +117,12 @@ class SetPasswordAPIView(generics.CreateAPIView):
 
 class ForgotPasswordAPIView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
+    serializer_class = ForgotPasswordSerializer
 
     def post(self, request):
-        email = request.data.get('email')
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        email = serializer.validated_data['email']
         try:
             user = User.objects.get(email=email)
             # Create password reset token
